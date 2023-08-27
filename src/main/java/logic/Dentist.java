@@ -31,7 +31,6 @@ public class Dentist extends Person {
     }
 
     public Dentist(String name, String surName, Date dateOfBirth, String address, String specialty, List<Turn> turns, User user, Schedule schedule) {
-
         this.specialty = specialty;
         this.turns = turns;
         this.user = user;

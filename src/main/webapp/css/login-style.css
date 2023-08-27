@@ -1,0 +1,12 @@
+body.ms-background{
+    background-image: url("../img/backgroudClinic.jpg");
+    background-size: cover;
+}
+
+.ms-bg-login{
+    background-image: url("../img/worker.jpg");
+    background-size: cover;
+}
+
+
+

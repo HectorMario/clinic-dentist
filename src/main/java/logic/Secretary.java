@@ -21,6 +21,11 @@ public class Secretary extends Person {
         this.user = user;
     }
 
+    public Secretary( String name, String surName, Date dateOfBirth, String address, String sector, User user) {
+        this.sector = sector;
+        this.user = user;
+    }
+
     public String getSector() {
         return sector;
     }

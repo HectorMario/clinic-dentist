@@ -11,22 +11,15 @@ public class User {
     private String username;
     private String password;
     private String rol;
-    @OneToOne
-    private Secretary secretary;
-    @OneToOne
-    private Dentist dentist;
-
     public User() {
 
     }
 
-    public User(int id_user, String username, String password, String rol, Secretary secretary, Dentist dentist) {
+    public User(int id_user, String username, String password, String rol) {
         this.id_user = id_user;
         this.username = username;
         this.password = password;
         this.rol = rol;
-        this.secretary = secretary;
-        this.dentist = dentist;
     }
 
     public int getId_user() {
@@ -61,19 +54,5 @@ public class User {
         this.rol = rol;
     }
 
-    public Secretary getSecretary() {
-        return secretary;
-    }
 
-    public void setSecretary(Secretary secretary) {
-        this.secretary = secretary;
-    }
-
-    public Dentist getDentist() {
-        return dentist;
-    }
-
-    public void setDentist(Dentist dentist) {
-        this.dentist = dentist;
-    }
 }

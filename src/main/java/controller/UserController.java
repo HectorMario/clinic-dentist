@@ -5,6 +5,7 @@ import logic.User;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
 import java.io.Serializable;
 import java.util.List;
 
@@ -24,13 +25,22 @@ public class UserController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void createUser(User user) {
+    public boolean createUser(User user) {
         EntityManager em = null;
         try {
             em = getEntity();
             em.getTransaction().begin();
-            em.persist(user);
-            em.getTransaction().commit();
+            TypedQuery<User> query = em.createQuery("SELECT u FROM User u WHERE u.username = :username", User.class);
+            query.setParameter("username", user.getUsername());
+            List<User> existingUsers = query.getResultList();
+            if (!existingUsers.isEmpty()) {
+                 System.err.println("user already exist");
+                 return false;
+            } else {
+                em.persist(user);
+                em.getTransaction().commit();
+                return true;
+            }
         } finally {
             if (em != null) {
                 em.close();
