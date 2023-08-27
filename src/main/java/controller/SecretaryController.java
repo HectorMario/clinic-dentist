@@ -1,22 +1,22 @@
 package controller;
 
+import logic.Secretary;
 
-import logic.Dentist;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.io.Serializable;
 import java.util.List;
 
-public class DentistController implements Serializable {
+public class SecretaryController implements Serializable {
 
     private EntityManagerFactory emf;
 
-    public DentistController(EntityManagerFactory emf) {
+    public SecretaryController(EntityManagerFactory emf) {
         this.emf = emf;
     }
 
-    public DentistController() {
+    public SecretaryController() {
         this.emf = Persistence.createEntityManagerFactory("clinic");
     }
 
@@ -24,12 +24,12 @@ public class DentistController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void createDentist(Dentist dentist) {
+    public void createSecretary(Secretary secretary) {
         EntityManager em = null;
         try {
             em = getEntity();
             em.getTransaction().begin();
-            em.persist(dentist);
+            em.persist(secretary);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -38,43 +38,43 @@ public class DentistController implements Serializable {
         }
     }
 
-    public void updateDentist(Dentist dentist) {
+    public void updateSecretary(Secretary secretary) {
         EntityManager em = getEntity();
         try {
             em.getTransaction().begin();
-            em.merge(dentist);
+            em.merge(secretary);
             em.getTransaction().commit();
         } finally {
             em.close();
         }
     }
 
-    public Dentist readDentist(int id) {
+    public Secretary readSecretary(int id) {
         EntityManager em = getEntity();
         try {
-            return em.find(Dentist.class, id);
+            return em.find(Secretary.class, id);
         } finally {
             em.close();
         }
     }
 
-    public List<Dentist> readAllDentists() {
+    public List<Secretary> readAllSecretaries() {
         EntityManager em = getEntity();
         try {
-            return em.createQuery("SELECT d FROM Dentist d", Dentist.class)
+            return em.createQuery("SELECT s FROM Secretary s", Secretary.class)
                     .getResultList();
         } finally {
             em.close();
         }
     }
 
-    public void deleteDentist(int id) {
+    public void deleteSecretary(int id) {
         EntityManager em = getEntity();
         try {
             em.getTransaction().begin();
-            Dentist dentist = em.find(Dentist.class, id);
-            if (dentist != null) {
-                em.remove(dentist);
+            Secretary secretary = em.find(Secretary.class, id);
+            if (secretary != null) {
+                em.remove(secretary);
             }
             em.getTransaction().commit();
         } finally {
@@ -82,4 +82,3 @@ public class DentistController implements Serializable {
         }
     }
 }
-

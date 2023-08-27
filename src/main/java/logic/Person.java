@@ -5,7 +5,7 @@ import java.util.Date;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public class Person {
+public abstract class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
     private int id;
