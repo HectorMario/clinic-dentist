@@ -73,6 +73,8 @@ body {
     outline: 0 !important;
 }
 
+
+
 hr {
     box-sizing: content-box;
     height: 0;
@@ -104,6 +106,10 @@ address {
     margin-bottom: 1rem;
     font-style: normal;
     line-height: inherit;
+}
+.scroll-y{
+    height: calc(100vh - (2*4.375rem));
+    overflow: auto;
 }
 
 ol,

@@ -49,16 +49,30 @@
                                 <div class="text-center">
                                     <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                                 </div>
-                                <form class="user">
+                                <form class="user" method="post" action="login">
                                     <div class="form-group">
                                         <input type="email" class="form-control form-control-user"
                                                id="exampleInputEmail" aria-describedby="emailHelp"
-                                               placeholder="Enter Email Address...">
+                                               placeholder="Enter Email Address..." name="username" required>
+                                        <div class="invalid-feedback">
+                                            Please enter a email.
+                                        </div>
                                     </div>
                                     <div class="form-group">
                                         <input type="password" class="form-control form-control-user"
-                                               id="exampleInputPassword" placeholder="Password">
+                                               id="exampleInputPassword" placeholder="Password" name="password" required>
                                     </div>
+                                    <div class="invalid-feedback">
+                                        Please enter a password.
+                                    </div>
+                                    <%
+                                        String error = request.getParameter("error");
+                                        if (error != null){
+                                    %>
+                                    <div class="text-danger">
+                                        The username or password are incorrect.
+                                    </div>
+                                    <% }%>
                                     <div class="form-group">
                                         <div class="custom-control custom-checkbox small">
                                             <input type="checkbox" class="custom-control-input" id="customCheck">
@@ -66,9 +80,9 @@
                                                 Me</label>
                                         </div>
                                     </div>
-                                    <a href="index.html" class="btn btn-primary btn-user btn-block">
+                                    <button type="submit" class="btn btn-primary btn-user btn-block">
                                         Login
-                                    </a>
+                                    </button>
                                 </form>
                                 <hr>
                                 <div class="text-center">

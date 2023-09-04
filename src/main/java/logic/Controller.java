@@ -10,4 +10,8 @@ public class Controller {
         User newUser = new User(id,username,password,rol);
         persistenceController.CreateUser(newUser);
     }
+
+    public User getUser (String username){
+        return persistenceController.getUser(username);
+    }
 }

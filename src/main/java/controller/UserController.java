@@ -2,10 +2,7 @@ package controller;
 
 import logic.User;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.TypedQuery;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
@@ -59,10 +56,16 @@ public class UserController implements Serializable {
         }
     }
 
-    public User readUser(int id) {
+    public User readUser(String username) {
         EntityManager em = getEntity();
         try {
-            return em.find(User.class, id);
+            TypedQuery<User> query = em.createQuery("SELECT u FROM User u WHERE u.username = :username", User.class);
+           query.setParameter("username", username);
+           return query.getSingleResult();
+
+        } catch (NoResultException ex){
+            return null;
+
         } finally {
             em.close();
         }

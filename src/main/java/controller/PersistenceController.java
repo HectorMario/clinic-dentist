@@ -14,4 +14,8 @@ public class PersistenceController {
     public boolean CreateUser (User user){
        return userController.createUser(user);
     }
+
+    public User getUser (String username){
+        return  userController.readUser(username);
+    }
 }

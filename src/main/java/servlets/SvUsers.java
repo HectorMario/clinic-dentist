@@ -25,7 +25,7 @@ public class SvUsers extends HttpServlet {
     private UserController userController;
 
     public void init() {
-        userController = new UserController(); // Inicializa el controlador
+        userController = new UserController();
     }
 
     @Override
@@ -58,23 +58,21 @@ public class SvUsers extends HttpServlet {
         String surname = request.getParameter("surname");
         String address = request.getParameter("address");
         String dateOfBirth = request.getParameter("dateOfBirth");
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH);
+        String specialty = request.getParameter("speciality");
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-dd-MM", Locale.ENGLISH);
         Date date = null;
         try {
             date = formatter.parse(dateOfBirth);
         } catch (ParseException e) {
             throw new RuntimeException(e);
         }
-        String role = request.getParameter("role");
-
         User newUser = new User();
         String salt = BCrypt.gensalt(12);
         newUser.setUsername(username);
         newUser.setPassword(BCrypt.hashpw(password,salt));
-        newUser.setRol(role);
+        newUser.setRol(specialty != null ? "destist":"secretary");
         boolean success = userController.createUser(newUser);
-        if (success && role.equals("dentist")){
-            String specialty = request.getParameter("specialty");
+        if (success && specialty != null){
             Dentist newDentist = new Dentist();
             newDentist.setUser(newUser);
             newDentist.setAddress(address);
@@ -101,7 +99,6 @@ public class SvUsers extends HttpServlet {
 
     @Override
     protected void doPut(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        // Actualizar un usuario existente
         int userId = Integer.parseInt(request.getParameter("id"));
         String username = request.getParameter("username");
         String password = request.getParameter("password");

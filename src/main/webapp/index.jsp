@@ -32,6 +32,7 @@
                     <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                             class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
                 </div>
+                <div id='calendar'></div>
             </div>
             <!-- End of Main Content -->
 
@@ -55,7 +56,18 @@
 
     <!-- Bootstrap core JavaScript-->
     <jsp:include page="components/scripts.jsp"/>
+    <script src="js/index.global.min.js"></script>
+    <script>
 
+        document.addEventListener('DOMContentLoaded', function() {
+            var calendarEl = document.getElementById('calendar');
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth'
+            });
+            calendar.render();
+        });
+
+    </script>
 </body>
 
 </html>
