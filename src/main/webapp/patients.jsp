@@ -1,4 +1,5 @@
-<%--
+<%@ page import="java.util.List" %>
+<%@ page import="logic.Patient" %><%--
   Created by IntelliJ IDEA.
   User: hector
   Date: 9/2/23
@@ -71,14 +72,19 @@
                                     </tr>
                                     </tfoot>
                                     <tbody>
+                                    <% List<Patient> patients = (List<Patient>) request.getAttribute("patients");
+                                        for (Patient patient: patients
+                                             ) {
+                                    %>
                                     <tr>
-                                        <td>Tiger Nixon</td>
+                                        <td><%= patient.getName()%></td>
                                         <td>System Architect</td>
                                         <td>Edinburgh</td>
                                         <td>61</td>
                                         <td>2011/04/25</td>
                                         <td>$320,800</td>
                                     </tr>
+                                    <%}%>
                                     </tbody>
                                 </table>
                             </div>

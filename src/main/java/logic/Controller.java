@@ -2,6 +2,8 @@ package logic;
 
 import controller.PersistenceController;
 
+import java.util.List;
+
 public class Controller {
 
     PersistenceController persistenceController = new PersistenceController();
@@ -13,5 +15,9 @@ public class Controller {
 
     public User getUser (String username){
         return persistenceController.getUser(username);
+    }
+
+    public List<Patient> getPatients(){
+        return persistenceController.getPatients();
     }
 }

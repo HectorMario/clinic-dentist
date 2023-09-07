@@ -1,6 +1,9 @@
 package controller;
 
+import logic.Patient;
 import logic.User;
+
+import java.util.List;
 
 public class PersistenceController {
     DentistController dentistController = new DentistController();
@@ -17,5 +20,9 @@ public class PersistenceController {
 
     public User getUser (String username){
         return  userController.readUser(username);
+    }
+
+    public List<Patient> getPatients (){
+        return patientsController.readAllPatients();
     }
 }
